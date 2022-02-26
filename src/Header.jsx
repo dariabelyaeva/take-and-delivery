@@ -1,4 +1,3 @@
-import Modal from './Modal';
 import main from './img/main.svg';
 import logo from './img/logo.svg';
 
