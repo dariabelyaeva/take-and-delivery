@@ -1,6 +1,7 @@
 import './App.css';
 import Header from './Header';
 import About from './About';
+import Products from './Products';
 import Order from './Order';
 import Process from './Process';
 import Menu from './Menu';
@@ -11,24 +12,20 @@ import Modal from './Modal';
 import { useState } from 'react';
 
 function App() {
-  const [card, setCard] = useState([
-    {
-      title: 'drink',
-      amount: 1,
-    },
-  ]);
-  //setCard([])
+  const [cart, setCart] = useState([]);
+  const [isModalOpened, setIsModalOpened]= useState(false);
   return (
     <div>
-      <Header />
+      <Header isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened}/>
       <About />
-      <Order />
-      <Process />
-      <Menu card={card} setCard={setCard} />
+      <Products />
       <Instruction />
+      <Menu cart={cart} setCart={setCart} />
+      <Process />
+      <Order />
       <Contact />
       <Footer />
-      <Modal card={card} />
+      {isModalOpened && <Modal cart={cart} isModalOpened={isModalOpened} setIsModalOpened={setIsModalOpened}/>}
     </div>
   );
 }

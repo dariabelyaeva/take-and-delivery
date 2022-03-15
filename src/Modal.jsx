@@ -1,12 +1,17 @@
 const Modal = (props) => {
-    const { card } = props;
-    return <div className="modal">
-        <div className="modal-open">
-        <h4>CARD</h4>
+    const { cart, isModalOpened, setIsModalOpened} = props;
+    return <div className="modal-overlay" onClick={() => setIsModalOpened(false)}>
+        <div className="modal" onClick={e => e.stopPropagation()}>
+        <div className="modal-button">
+            <button className="button-close" onClick={() => setIsModalOpened(false)}><span>Close</span></button>
+        </div>
+        <h2 className="modal-title">CART</h2>
+        <div>
             <ul>
-                {card.map(product => <li>{product.title} ({product.amount})</li>)}
+                {cart.map(product => <li>({product.title}) ($ {product.price.toFixed(2)} USD) ({product.amount})</li>)}
             </ul>
-        <button>CHECKOUT</button>
+        </div>
+        <button className="button-checkout button">CHECKOUT</button>
         </div>
     </div>
 };
